@@ -118,7 +118,7 @@ GEM
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
     bcrypt (3.1.16)
-    belated (0.5.1)
+    belated (0.5.2)
       drb
       dry-configurable
     bindex (0.8.1)

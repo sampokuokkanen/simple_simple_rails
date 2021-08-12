@@ -3,7 +3,6 @@ class GreetingsController < ApplicationController
     @count = Counter.first&.count.to_i
     BelatedHelper.client.perform_belated(
       proc {
-        sleep 10
         count = Counter.find_or_initialize_by(id: 1)
         count.update(count: count.count.next)
       }
