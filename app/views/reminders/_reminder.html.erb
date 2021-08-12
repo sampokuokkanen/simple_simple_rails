@@ -1,0 +1,17 @@
+<div id="<%= dom_id reminder %>" class="scaffold_record">
+  <p>
+    <strong>Remind at:</strong>
+    <%= reminder.remind_at %>
+  </p>
+
+  <p>
+    <strong>Reminder:</strong>
+    <span class="reminder_text">
+      <%= reminder.reminder %>
+    </span>
+  </p>
+  
+  <p>
+    <%= link_to "Show this reminder", reminder %>
+  </p>
+</div>
