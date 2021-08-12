@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_12_052829) do
+ActiveRecord::Schema.define(version: 2021_08_12_231430) do
+
+  create_table "counters", force: :cascade do |t|
+    t.integer "count", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "reminders", force: :cascade do |t|
     t.datetime "remind_at", precision: 6

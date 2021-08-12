@@ -1,5 +1,12 @@
 class GreetingsController < ApplicationController
   def index
-    render plain: "Hello, World!"
+    @count = Counter.first&.count.to_i
+    BelatedHelper.client.perform_belated(
+      proc {
+        sleep 10
+        count = Counter.find_or_initialize_by(id: 1)
+        count.update(count: count.count.next)
+      }
+    )
   end
 end
