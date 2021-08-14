@@ -21,8 +21,7 @@ unless ENV['RAILS_ENV'] == 'development'
   bind "unix://#{shared_dir}/sockets/puma.sock"
 
   # Logging
-  stdout_redirect "#{shared_dir}/log/puma.stdout.log", "#{shared_dir}/log/puma.stderr.log", true
-
+  stdout_redirect './puma_access.log', './puma_error.log', true
   # Set master PID and state locations
   pidfile "#{shared_dir}/pids/puma.pid"
   state_path "#{shared_dir}/pids/puma.state"
