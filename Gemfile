@@ -19,6 +19,9 @@ gem 'devise', git: 'https://github.com/ghiculescu/devise.git', branch: 'patch-2'
 gem 'rexml'
 gem 'activerecord-session_store'
 gem 'rollbar'
+gem 'omniauth-facebook', '~> 4.0'
+gem 'omniauth-rails_csrf_protection'
+gem 'coffee-rails'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
