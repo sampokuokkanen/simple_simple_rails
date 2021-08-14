@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Puma can serve each request in a thread from an internal thread pool.
 # The `threads` method setting takes two numbers: a minimum and maximum.
 # Any libraries that use thread pools should be configured to match
@@ -5,16 +7,21 @@
 # and maximum; this matches the default thread size of Active Record.
 #
 workers 0
-max_threads_count = ENV.fetch("RAILS_MAX_THREADS") { 5 }
-min_threads_count = ENV.fetch("RAILS_MIN_THREADS") { max_threads_count }
+max_threads_count = ENV.fetch('RAILS_MAX_THREADS', 5)
+min_threads_count = ENV.fetch('RAILS_MIN_THREADS') { max_threads_count }
 threads min_threads_count, max_threads_count
 
-unless ENV['RAILS_ENV'] == 'development'
-  app_dir = File.expand_path("../..", __FILE__)
+if ENV['RAILS_ENV'] == 'development'
+  # Specifies the `port` that Puma will listen on to receive requests; default is 3000.
+  #
+  port ENV.fetch('PORT', 3000)
+  environment ENV.fetch('RAILS_ENV', 'development')
+else
+  app_dir = File.expand_path('..', __dir__)
   shared_dir = "#{app_dir}/shared"
 
   # Default to production
-  rails_env = "production"
+  rails_env = 'production'
   environment rails_env
 
   # Set up socket location
@@ -28,21 +35,20 @@ unless ENV['RAILS_ENV'] == 'development'
   activate_control_app
 
   on_worker_boot do
-    require "active_record"
-    ActiveRecord::Base.connection.disconnect! rescue ActiveRecord::ConnectionNotEstablished
+    require 'active_record'
+    begin
+      ActiveRecord::Base.connection.disconnect!
+    rescue StandardError
+      ActiveRecord::ConnectionNotEstablished
+    end
     ActiveRecord::Base.establish_connection(YAML.load_file("#{app_dir}/config/database.yml")[rails_env])
   end
-else
-  # Specifies the `port` that Puma will listen on to receive requests; default is 3000.
-  #
-  port ENV.fetch("PORT") { 3000 }
-  environment ENV.fetch("RAILS_ENV") { "development" }
 end
 
 # Specifies the `worker_timeout` threshold that Puma will use to wait before
 # terminating a worker in development environments.
 #
-worker_timeout 3600 if ENV.fetch("RAILS_ENV", "development") == "development"
+worker_timeout 3600 if ENV.fetch('RAILS_ENV', 'development') == 'development'
 
 # Specifies the number of `workers` to boot in clustered mode.
 # Workers are forked web server processes. If using threads and workers together
