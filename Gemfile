@@ -18,6 +18,7 @@ gem 'belated'
 gem 'devise', git: 'https://github.com/ghiculescu/devise.git', branch: 'patch-2'
 gem 'rexml'
 gem 'activerecord-session_store'
+gem 'rollbar'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
