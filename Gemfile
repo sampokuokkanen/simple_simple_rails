@@ -17,13 +17,15 @@ gem 'sass-rails', '>= 6'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'activerecord-session_store'
 gem 'belated'
-gem 'coffee-rails'
 gem 'devise', git: 'https://github.com/ghiculescu/devise.git', branch: 'patch-2'
 gem 'omniauth-facebook', '~> 4.0'
 gem 'omniauth-rails_csrf_protection'
 gem 'rexml'
 gem 'rollbar'
 gem 'turbolinks', '~> 5'
+# Turbolinks seems to need this... \o/
+gem 'coffee-script'
+gem 'mailjet', :git => 'https://github.com/mailjet/mailjet-gem.git'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

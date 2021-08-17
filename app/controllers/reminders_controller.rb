@@ -22,7 +22,7 @@ class RemindersController < ApplicationController
   # POST /reminders
   def create
     @reminder = Reminder.new(reminder_params)
-
+    @reminder.user = current_user
     if @reminder.save
       redirect_to @reminder, notice: 'Reminder was successfully created.'
     else
@@ -50,6 +50,13 @@ class RemindersController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_reminder
     @reminder = Reminder.find(params[:id])
+    authorize unless action_name == 'show'
+  end
+
+  def authorize
+    return if current_user.id == @reminder.user_id
+
+    render file: "#{Rails.root}/public/404.html", layout: false, status: :not_found
   end
 
   # Only allow a list of trusted parameters through.

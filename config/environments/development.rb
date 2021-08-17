@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 require 'active_support/core_ext/integer/time'
-
+OmniAuth.config.test_mode = true
+OmniAuth.config.mock_auth[:facebook] = Faker::Omniauth.facebook
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 

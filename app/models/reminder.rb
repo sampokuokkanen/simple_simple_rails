@@ -2,5 +2,6 @@
 
 class Reminder < ApplicationRecord
   belongs_to :user
-  has_rich_text :body
+  validates :reminder, presence: true
+  validates :remind_at, presence: true
 end

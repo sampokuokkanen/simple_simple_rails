@@ -18,21 +18,24 @@ RSpec.describe '/reminders', type: :request do
   # Reminder. As you add validations to Reminder, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
-    skip('Add a hash of attributes valid for your model')
+    { reminder: 'Hello world', remind_at: Time.now + 1.day }
   end
 
   let(:invalid_attributes) do
-    skip('Add a hash of attributes invalid for your model')
+    { reminder: 'Hello world', remind_at: nil }
   end
 
+  let(:user) { User.create(first_name: 'MyString', last_name: 'Me', email: 'MyString@mystring.com', password: 'password1') }
+  let(:second_user) { User.create!(first_name: 'MyString', last_name: 'Me', email: 'MyMy@mymy.com', password: 'hellohello') }
+  let(:second_reminder) { Reminder.create!(user_id: second_user.id, reminder: 'Hello world', remind_at: Time.now + 1.day) }
+
   before do
-    @user = User.create!(first_name: 'MyString', last_name: 'Me', email: 'MyString@mystring.com', password: 'password1')
-    login_as(@user)
+    login_as(user)
   end
 
   describe 'GET /index' do
     it 'renders a successful response' do
-      Reminder.create! valid_attributes
+      Reminder.create! valid_attributes.merge({user_id: user.id})
       get reminders_url
       expect(response).to be_successful
     end
@@ -40,7 +43,7 @@ RSpec.describe '/reminders', type: :request do
 
   describe 'GET /show' do
     it 'renders a successful response' do
-      reminder = Reminder.create! valid_attributes
+      reminder = Reminder.create! valid_attributes.merge({user_id: user.id})
       get reminder_url(reminder)
       expect(response).to be_successful
     end
@@ -55,9 +58,14 @@ RSpec.describe '/reminders', type: :request do
 
   describe 'GET /edit' do
     it 'render a successful response' do
-      reminder = Reminder.create! valid_attributes
+      reminder = Reminder.create! valid_attributes.merge({user_id: user.id})
       get edit_reminder_url(reminder)
       expect(response).to be_successful
+    end
+
+    it "is not possible to edit other people's reminders" do
+      get edit_reminder_url(second_reminder)
+      expect(response.status).to eq 404
     end
   end
 
@@ -67,6 +75,7 @@ RSpec.describe '/reminders', type: :request do
         expect {
           post reminders_url, params: { reminder: valid_attributes }
         }.to change(Reminder, :count).by(1)
+        expect(Reminder.last.user_id).to eq(user.id)
       end
 
       it 'redirects to the created reminder' do
@@ -84,26 +93,27 @@ RSpec.describe '/reminders', type: :request do
 
       it "renders a successful response (i.e. to display the 'new' template)" do
         post reminders_url, params: { reminder: invalid_attributes }
-        expect(response).to be_successful
+        expect(response.status).to eq 422
       end
     end
   end
 
   describe 'PATCH /update' do
     context 'with valid parameters' do
+      let(:time) { Time.now + 1.hour }
       let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
+        { remind_at: time }
       end
 
       it 'updates the requested reminder' do
-        reminder = Reminder.create! valid_attributes
+        reminder = Reminder.create! valid_attributes.merge({user_id: user.id})
         patch reminder_url(reminder), params: { reminder: new_attributes }
         reminder.reload
-        skip('Add assertions for updated state')
+        expect(reminder.remind_at).to be_within(1.second).of time
       end
 
       it 'redirects to the reminder' do
-        reminder = Reminder.create! valid_attributes
+        reminder = Reminder.create! valid_attributes.merge({user_id: user.id})
         patch reminder_url(reminder), params: { reminder: new_attributes }
         reminder.reload
         expect(response).to redirect_to(reminder_url(reminder))
@@ -112,23 +122,23 @@ RSpec.describe '/reminders', type: :request do
 
     context 'with invalid parameters' do
       it "renders a successful response (i.e. to display the 'edit' template)" do
-        reminder = Reminder.create! valid_attributes
+        reminder = Reminder.create! valid_attributes.merge({user_id: user.id})
         patch reminder_url(reminder), params: { reminder: invalid_attributes }
-        expect(response).to be_successful
+        expect(response.status).to eq 422
       end
     end
   end
 
   describe 'DELETE /destroy' do
     it 'destroys the requested reminder' do
-      reminder = Reminder.create! valid_attributes
+      reminder = Reminder.create! valid_attributes.merge({user_id: user.id})
       expect {
         delete reminder_url(reminder)
       }.to change(Reminder, :count).by(-1)
     end
 
     it 'redirects to the reminders list' do
-      reminder = Reminder.create! valid_attributes
+      reminder = Reminder.create! valid_attributes.merge({user_id: user.id})
       delete reminder_url(reminder)
       expect(response).to redirect_to(reminders_url)
     end
