@@ -2,6 +2,10 @@
 
 class BelatedHelper
   def self.client
-    @client ||= Belated::Client.new
+    return @client if @client
+
+    client = Belated::Client.instance
+    client.start unless client.started?
+    @client = client
   end
 end
