@@ -7,9 +7,5 @@ if ::ActiveRecord::Base.connection_config[:adapter] == 'sqlite3'
 
     # Journal mode for database, WAL=write-ahead log
     c.execute 'PRAGMA main.journal_mode=WAL;'
-
-    # Storage location for temporary tables, indices, views, triggers
-    c.execute 'PRAGMA main.temp_store = MEMORY;'
-    c.execute 'PRAGMA mmap_size = 30000000000;'
   end
 end
