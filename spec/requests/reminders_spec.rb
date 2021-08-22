@@ -78,6 +78,18 @@ RSpec.describe '/reminders', type: :request do
         expect(Reminder.last.user_id).to eq(user.id)
       end
 
+      it 'creates a new Reminder' do
+        Belated.config.connect = false
+        a = Belated.instance
+        require 'belated/testing'
+        Belated::Testing.inline!
+        a.start
+        expect {
+          post reminders_url, params: { reminder: valid_attributes.merge({remind_at: Time.now}) }
+          sleep 0.1
+        }.to change(ActionMailer::Base.deliveries, :count).by(1)
+      end
+
       it 'redirects to the created reminder' do
         post reminders_url, params: { reminder: valid_attributes }
         expect(response).to redirect_to(reminder_url(Reminder.last))

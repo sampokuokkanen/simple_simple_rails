@@ -24,6 +24,7 @@ class RemindersController < ApplicationController
     @reminder = Reminder.new(reminder_params)
     @reminder.user = current_user
     if @reminder.save
+      BelatedHelper.set_reminder(@reminder)
       redirect_to @reminder, notice: 'Reminder was successfully created.'
     else
       render :new, status: :unprocessable_entity

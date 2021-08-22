@@ -16,7 +16,7 @@ gem 'sd_notify'
 gem 'sass-rails', '>= 6'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'activerecord-session_store'
-gem 'belated'
+gem 'belated', git: 'https://github.com/sampokuokkanen/belated.git'
 gem 'devise', git: 'https://github.com/ghiculescu/devise.git', branch: 'patch-2'
 gem 'omniauth-facebook', '~> 4.0'
 gem 'omniauth-rails_csrf_protection'

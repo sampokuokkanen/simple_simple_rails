@@ -8,11 +8,13 @@ RSpec.describe 'reminders/index', type: :view do
     assign(:reminders, [
              Reminder.create!(
                reminder: 'MyText',
-               user: @user
+               user: @user,
+               remind_at: Time.now
              ),
              Reminder.create!(
                reminder: 'MyText',
-               user: @user
+               user: @user,
+               remind_at: Time.now
              )
            ])
   end

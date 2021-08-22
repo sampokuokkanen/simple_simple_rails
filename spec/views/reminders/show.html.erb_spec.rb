@@ -7,7 +7,8 @@ RSpec.describe 'reminders/show', type: :view do
     @user = User.create!(first_name: 'MyString', last_name: 'Me', email: 'MyString@mystring.com', password: 'password1')
     @reminder = assign(:reminder, Reminder.create!(
                                     reminder: 'MyText',
-                                    user_id: @user.id
+                                    user_id: @user.id,
+                                    remind_at: Time.now
                                   ))
   end
 

@@ -12,8 +12,4 @@ class GreetingsController < ApplicationController
     )
   end
 
-  def greet
-    UserNotifierMailer.send_reminder_email(current_user).deliver_now
-    redirect_to :root
-  end
 end

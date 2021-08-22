@@ -7,7 +7,8 @@ RSpec.describe 'reminders/edit', type: :view do
     @user = User.create!(first_name: 'MyString', last_name: 'Me', email: 'MyString@mystring.com', password: 'password1')
     @reminder = assign(:reminder, Reminder.create!(
                                     reminder: 'MyText',
-                                    user: @user
+                                    user: @user,
+                                    remind_at: Time.now
                                   ))
   end
 
@@ -16,8 +17,6 @@ RSpec.describe 'reminders/edit', type: :view do
 
     assert_select 'form[action=?][method=?]', reminder_path(@reminder), 'post' do
       assert_select 'textarea[name=?]', 'reminder[reminder]'
-
-      assert_select 'input[name=?]', 'reminder[users_id]'
     end
   end
 end
