@@ -12,4 +12,6 @@ class GreetingsController < ApplicationController
     )
   end
 
+  def privacy_policy
+  end
 end

@@ -71,3 +71,5 @@ RSpec.configure do |config|
   
   config.include Devise::TestHelpers, type: :controller
 end
+require 'belated/testing'
+Belated::Testing.inline!

@@ -79,11 +79,6 @@ RSpec.describe '/reminders', type: :request do
       end
 
       it 'creates a new Reminder' do
-        Belated.config.connect = false
-        a = Belated.instance
-        require 'belated/testing'
-        Belated::Testing.inline!
-        a.start
         expect {
           post reminders_url, params: { reminder: valid_attributes.merge({remind_at: Time.now}) }
           sleep 0.1

@@ -1,4 +1,11 @@
 GIT
+  remote: https://github.com/Jabbypappy/devise-bootstrap-views.git
+  revision: 27a674987902ffaec8b980c157848b0eb2205333
+  branch: patch-1
+  specs:
+    devise-bootstrap-views (1.1.0)
+
+GIT
   remote: https://github.com/ghiculescu/devise.git
   revision: e37ea6a0143b9b8a3477b1ed397d8a22ad317a61
   branch: patch-2
@@ -115,15 +122,6 @@ GIT
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
 
-GIT
-  remote: https://github.com/sampokuokkanen/belated.git
-  revision: 3e6bd015609453b6f987ba661f716acce603ce9d
-  specs:
-    belated (0.6.3)
-      drb
-      dry-configurable
-      sorted_set
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -137,6 +135,11 @@ GEM
       public_suffix (>= 2.0.2, < 5.0)
     ast (2.4.2)
     bcrypt (3.1.16)
+    belated (0.6.7)
+      drb
+      dry-configurable
+      ruby2_keywords
+      sorted_set
     bindex (0.8.1)
     bootsnap (1.7.7)
       msgpack (~> 1.0)
@@ -157,6 +160,8 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.1.9)
     crass (1.0.6)
+    devise-i18n (1.9.4)
+      devise (>= 4.7.1)
     diff-lcs (1.4.4)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
@@ -373,12 +378,14 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-session_store
-  belated!
+  belated
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)
   coffee-script
   devise!
+  devise-bootstrap-views!
+  devise-i18n
   faker
   listen (~> 3.3)
   mailjet!

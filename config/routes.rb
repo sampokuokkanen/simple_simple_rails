@@ -2,6 +2,7 @@
 
 Rails.application.routes.draw do
   root 'greetings#index'
+  get 'privacy_policy', to: 'greetings#privacy_policy'
   authenticate :user do
     resources :reminders
   end
