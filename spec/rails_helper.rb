@@ -68,8 +68,15 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
   config.include Devise::Test::IntegrationHelpers, type: :request
-  
+
   config.include Devise::TestHelpers, type: :controller
+
+  config.before(:each) do
+    (ActiveJob::Base.descendants << ActiveJob::Base).each(&:disable_test_adapter)
+    ActiveJob::Base.queue_adapter = :belated
+  end
 end
 require 'belated/testing'
+Belated.config.client_heartbeat = 0.01
+Belated.config.heartbeat = 0.01
 Belated::Testing.inline!

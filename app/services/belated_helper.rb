@@ -10,9 +10,7 @@ class BelatedHelper
   end
 
   def self.set_reminder(reminder)
-    client.perform(proc {
-      UserNotifierMailer.send_reminder_email(reminder).deliver_now
-    },
-    at: reminder.remind_at)
+    reminder = UserNotifierMailer.send_reminder_email(reminder)
+                                 .deliver_later(wait_until: reminder.remind_at)
   end
 end

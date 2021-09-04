@@ -8,7 +8,7 @@ RSpec.describe 'Oauth login', type: :system do
   end
 
   it 'makes it possible to create accounts through Facebook' do
-    visit '/'
+    visit new_user_session_path
     click_link 'Sign in with Facebook'
     expect(page).to have_text('Successfully authenticated from Facebook account')
   end

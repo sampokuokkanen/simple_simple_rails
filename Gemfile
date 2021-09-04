@@ -19,7 +19,7 @@ gem 'activerecord-session_store'
 gem 'belated'
 gem 'devise-i18n'
 gem 'devise-bootstrap-views', git: 'https://github.com/Jabbypappy/devise-bootstrap-views.git', branch: 'patch-1'
-gem 'devise', git: 'https://github.com/ghiculescu/devise.git', branch: 'patch-2'
+gem 'devise', git: 'https://github.com/sampokuokkanen/devise.git', branch: 'master'
 gem 'omniauth-facebook', '~> 4.0'
 gem 'omniauth-rails_csrf_protection'
 gem 'rexml'
@@ -28,8 +28,7 @@ gem 'turbolinks', '~> 5'
 # Turbolinks seems to need this... \o/
 gem 'coffee-script'
 gem 'mailjet', :git => 'https://github.com/mailjet/mailjet-gem.git'
-# Use Active Model has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'rails_material_design_icons'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

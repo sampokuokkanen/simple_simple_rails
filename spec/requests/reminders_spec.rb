@@ -31,6 +31,16 @@ RSpec.describe '/reminders', type: :request do
 
   before do
     login_as(user)
+    Belated::Testing.test_mode_off!
+    @worker = Thread.new {
+      b = Belated.instance
+      b.start
+    }
+  end
+
+  after do
+    Belated::Testing.inline!
+    @worker.kill
   end
 
   describe 'GET /index' do
@@ -79,9 +89,13 @@ RSpec.describe '/reminders', type: :request do
       end
 
       it 'creates a new Reminder' do
+        post reminders_url, params: { reminder: valid_attributes.merge({remind_at: Time.now + 10}) }
+        post reminders_url, params: { reminder: valid_attributes.merge({remind_at: Time.now + 10}) }
+        post reminders_url, params: { reminder: valid_attributes.merge({remind_at: Time.now + 10}) }
+        
         expect {
           post reminders_url, params: { reminder: valid_attributes.merge({remind_at: Time.now}) }
-          sleep 0.1
+          sleep 2
         }.to change(ActionMailer::Base.deliveries, :count).by(1)
       end
 
