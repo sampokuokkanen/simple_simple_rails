@@ -13,7 +13,7 @@ class RemindersController < ApplicationController
 
   # GET /reminders/new
   def new
-    @reminder = Reminder.new
+    @reminder = Reminder.new(remind_at: (Time.current + 1.day).in_time_zone('Asia/Tokyo'))
   end
 
   # GET /reminders/1/edit
@@ -62,6 +62,6 @@ class RemindersController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def reminder_params
-    params.require(:reminder).permit(:remind_at, :reminder, :users_id)
+    params.require(:reminder).permit(:remind_at, :reminder)
   end
 end

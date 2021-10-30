@@ -28,6 +28,7 @@ module SimpleRails
     config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
     config.action_mailer.delivery_method = :mailjet
     config.active_job.adapter = :belated
+    config.time_zone = 'UTC'
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

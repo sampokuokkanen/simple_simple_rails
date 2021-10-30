@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class GreetingsController < ApplicationController
-  before_action :authenticate_user!, only: [:greet]
   def index
     @count = Counter.first&.count.to_i
     BelatedHelper.client.perform_belated(
@@ -13,5 +12,9 @@ class GreetingsController < ApplicationController
   end
 
   def privacy_policy
+  end
+
+  def moo
+    render cowsay: params[:moo] || 'Hello from RenderCow'
   end
 end
