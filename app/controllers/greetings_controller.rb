@@ -17,4 +17,10 @@ class GreetingsController < ApplicationController
   def moo
     render cowsay: params[:moo] || 'Hello from RenderCow'
   end
+
+  RenderCow.characters.each do |character|
+    define_method(character) do
+      render(character => character.to_s.capitalize)
+    end
+  end
 end

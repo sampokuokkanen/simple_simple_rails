@@ -16,7 +16,7 @@ GIT
 
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 603631b335af8314593ff9995dea9e068b96cd8d
+  revision: f314bae561f7d1d8ff7606ee417fcf0bc55d5ab0
   branch: main
   specs:
     actioncable (7.0.0.alpha2)
@@ -276,7 +276,7 @@ GEM
       ffi (~> 1.0)
     rbtree (0.4.4)
     regexp_parser (2.1.1)
-    render_cow (0.3.0)
+    render_cow (0.4.1)
       cowsay
       rails (>= 6.0)
     responders (3.0.1)
@@ -402,7 +402,7 @@ DEPENDENCIES
   rack-mini-profiler (~> 2.0)
   rails!
   rails_material_design_icons
-  render_cow (>= 0.2)
+  render_cow
   rexml
   rollbar
   rspec-rails

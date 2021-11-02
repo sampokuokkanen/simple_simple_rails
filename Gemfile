@@ -29,7 +29,7 @@ gem 'turbolinks', '~> 5'
 gem 'coffee-script'
 gem 'mailjet', :git => 'https://github.com/mailjet/mailjet-gem.git'
 gem 'rails_material_design_icons'
-gem 'render_cow', '>= 0.2'
+gem 'render_cow'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

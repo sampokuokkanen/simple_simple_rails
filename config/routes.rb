@@ -7,6 +7,10 @@ Rails.application.routes.draw do
     resources :reminders
   end
   get '/moo', to: 'greetings#moo'
+  RenderCow.characters.each do |character|
+    get "/#{character}", to: "greetings##{character}"
+  end
+
   post '/greet', to: 'greetings#greet'
   post '/time_zone', to: 'application#time_zone'
 
