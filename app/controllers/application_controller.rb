@@ -9,10 +9,10 @@ class ApplicationController < ActionController::Base
   
   def time_zone
     time_zone = request.body.read
-    return unless time_zone.present?
+    return if time_zone.blank?
 
     session[:time_zone] = time_zone
-    if current_user.time_zone != time_zone
+    if current_user&.time_zone != time_zone
       current_user.update(time_zone: ActiveSupport::TimeZone::MAPPING.key(time_zone))
     end
   end
