@@ -8,7 +8,7 @@ require File.expand_path('../config/environment', __dir__)
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
 
-Belated.config.environment = 'test'
+Belated.config.env = 'test'
 OmniAuth.config.test_mode = true
 OmniAuth.config.mock_auth[:facebook] = Faker::Omniauth.facebook
 # Add additional requires below this line. Rails is not loaded until this point!
