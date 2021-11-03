@@ -11,16 +11,17 @@ class GreetingsController < ApplicationController
     )
   end
 
-  def privacy_policy
-  end
+  def privacy_policy; end
 
   def moo
     render cowsay: params[:moo] || 'Hello from RenderCow'
   end
 
+  def spongebob_meme_maker; end
+
   RenderCow.characters.each do |character|
     define_method(character) do
-      render(character => character.to_s.capitalize)
+      render(character => params[character] || character.to_s.capitalize)
     end
   end
 end

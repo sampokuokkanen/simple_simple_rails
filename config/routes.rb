@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :reminders
   end
   get '/moo', to: 'greetings#moo'
+  get '/spongebob_meme_maker', to: 'greetings#spongebob_meme_maker'
   RenderCow.characters.each do |character|
     get "/#{character}", to: "greetings##{character}"
   end

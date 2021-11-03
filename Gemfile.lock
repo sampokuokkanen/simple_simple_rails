@@ -16,7 +16,7 @@ GIT
 
 GIT
   remote: https://github.com/rails/rails.git
-  revision: f314bae561f7d1d8ff7606ee417fcf0bc55d5ab0
+  revision: 457feda0244e16c759b6c6ddbb1130a0fc727b72
   branch: main
   specs:
     actioncable (7.0.0.alpha2)
@@ -203,7 +203,7 @@ GEM
     http-accept (1.7.0)
     http-cookie (1.0.4)
       domain_name (~> 0.5)
-    i18n (1.8.10)
+    i18n (1.8.11)
       concurrent-ruby (~> 1.0)
     jwt (2.2.3)
     listen (3.7.0)
@@ -277,9 +277,10 @@ GEM
       ffi (~> 1.0)
     rbtree (0.4.4)
     regexp_parser (2.1.1)
-    render_cow (0.4.1)
+    render_cow (0.5.0)
       cowsay
       rails (>= 6.0)
+      spongebobify (>= 0.1.0)
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -349,6 +350,7 @@ GEM
     sorted_set (1.0.3)
       rbtree
       set (~> 1.0)
+    spongebobify (0.1.1)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)

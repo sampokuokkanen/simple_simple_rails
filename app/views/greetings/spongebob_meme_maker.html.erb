@@ -1,0 +1,19 @@
+<pre>
+<%= render spongebob: 'Create a SpongeBob ascii meme!' %> 
+</pre>
+<br>
+Just write what you want to say and ascii SpongeBob will appear saying it.
+<br>
+<div class="d-flex flex-column form-container">
+  <%= form_with(url: "/spongebob", method: "get") do %>
+    <div class="form-group">
+      <%= label_tag :spongebob, "What should SpongeBob say?" %>
+      <br>
+      <%= text_area_tag(:spongebob, nil, class: 'form-control') %>
+      <br>
+    </div>
+    <div class='form-group'>
+      <%= submit_tag 'CREATE MEME', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>
