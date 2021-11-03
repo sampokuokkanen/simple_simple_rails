@@ -14,6 +14,12 @@
         <% end %>
       </ul>
       <ul class="navbar-nav">
+        <%= link_to spongebob_meme_maker_path, class: "nav-link #{'active fw-bold' if current_page?(spongebob_meme_maker_path)}" do %>
+          <%= mdi_icon 'fruit-pineapple' %>
+          Create SpongeBob Meme
+        <% end %>
+      </ul>
+      <ul class="navbar-nav">
         <%= link_to reminders_path, class: "nav-link #{'active fw-bold' if current_page?(reminders_path)}" do %>
           <%= mdi_icon 'note-multiple' %>
           Reminders
